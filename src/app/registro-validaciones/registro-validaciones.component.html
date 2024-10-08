@@ -1,0 +1,52 @@
+<h2>Registro con Validaciones Estándar</h2>
+<form [formGroup]="formularioRegistro" (ngSubmit)="registrar()">
+    <div>
+        <label for="usuario">Usuario:</label>
+        <input id="usuario" formControlName="usuario" />
+        <div *ngIf="formularioRegistro.get('usuario')?.invalid &&
+formularioRegistro.get('usuario')?.touched">
+            <div *ngIf="formularioRegistro.get('usuario')?.errors?.
+['required']">
+                El usuario es obligatorio.
+            </div>
+            <div *ngIf="formularioRegistro.get('usuario')?.errors?.
+['minlength']">
+                El usuario debe tener al menos 4 caracteres.
+            </div>
+            <div *ngIf="formularioRegistro.get('usuario')?.errors?.
+['maxlength']">
+                El usuario no puede exceder los 20 caracteres.
+            </div>
+        </div>
+    </div>
+    <div>
+        <label for="email">Correo Electrónico:</label>
+        <input id="email" formControlName="email" />
+        <div *ngIf="formularioRegistro.get('email')?.invalid &&
+formularioRegistro.get('email')?.touched">
+            <div *ngIf="formularioRegistro.get('email')?.errors?.['required']">
+                El correo electrónico es obligatorio.
+            </div>
+            <div *ngIf="formularioRegistro.get('email')?.errors?.['email']">
+                Ingrese un correo electrónico válido.
+            </div>
+        </div>
+    </div>
+    <div>
+        <label for="contraseña">Contraseña:</label>
+        <input type="password" id="contraseña" formControlName="contraseña" />
+        <div *ngIf="formularioRegistro.get('contraseña')?.invalid &&
+formularioRegistro.get('contraseña')?.touched">
+            <div *ngIf="formularioRegistro.get('contraseña')?.errors?.
+['required']">
+                La contraseña es obligatoria.
+            </div>
+            <div *ngIf="formularioRegistro.get('contraseña')?.errors?.
+['pattern']">
+                La contraseña debe tener al menos 8 caracteres, incluyendo letras
+                y números.
+            </div>
+        </div>
+    </div>
+    <button type="submit" [disabled]="formularioRegistro.invalid">Registrar</button>
+</form>

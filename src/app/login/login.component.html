@@ -1,0 +1,18 @@
+<h2>Inicio de Sesión</h2>
+<form (ngSubmit)="iniciarSesion()">
+<div>
+<label for="usuario">Usuario:</label>
+<input id="usuario" [formControl]="usuario" />
+<div *ngIf="usuario.invalid && usuario.touched">
+El usuario es obligatorio.
+</div>
+</div>
+<div>
+<label for="contraseña">Contraseña:</label>
+<input type="password" id="contraseña" [formControl]="contrasena" />
+<div *ngIf="contrasena.invalid && contrasena.touched">
+La contraseña es obligatoria.
+</div>
+</div>
+<button type="submit">Ingresar</button>
+</form>

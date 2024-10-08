@@ -1,0 +1,50 @@
+<h2>Encuesta Reactiva</h2>
+<form [formGroup]="formularioEncuesta" (ngSubmit)="enviarEncuesta()">
+<!-- Checkboxes -->
+<div>
+<label>Selecciona tus intereses:</label><br />
+<div *ngFor="let interes of interesesOpciones">
+<input
+type="checkbox"
+[value]="interes"
+(change)="onCheckboxChange($event)"
+/>
+{{ interes }}
+</div>
+<div *ngIf="formularioEncuesta.get('intereses')?.invalid &&
+formularioEncuesta.get('intereses')?.touched">
+Debes seleccionar al menos un interés.
+</div>
+</div>
+<!-- Radio Buttons -->
+<div>
+<label>Género musical favorito:</label><br />
+<div *ngFor="let genero of generosMusicales">
+<input
+type="radio"
+[value]="genero"
+formControlName="generoMusical"
+/>
+{{ genero }}
+</div>
+<div *ngIf="formularioEncuesta.get('generoMusical')?.invalid &&
+formularioEncuesta.get('generoMusical')?.touched">
+Debes seleccionar un género musical.
+</div>
+</div>
+<!-- Select -->
+<div>
+<label for="pais">País:</label>
+<select id="pais" formControlName="pais">
+<option value="">Selecciona un país</option>
+<option *ngFor="let pais of paises" [value]="pais">{{ pais }}
+</option>
+</select>
+<div *ngIf="formularioEncuesta.get('pais')?.invalid &&
+formularioEncuesta.get('pais')?.touched">
+Debes seleccionar un país.
+</div>
+</div>
+<button type="submit"
+[disabled]="formularioEncuesta.invalid">Enviar</button>
+</form>

@@ -1,0 +1,34 @@
+<h2>Registro con FormBuilder</h2>
+<form [formGroup]="formularioRegistro" (ngSubmit)="registrar()">
+<div>
+<label for="usuario">Usuario:</label>
+<input id="usuario" formControlName="usuario" />
+<div *ngIf="formularioRegistro.get('usuario')?.invalid &&
+formularioRegistro.get('usuario')?.touched">
+<div *ngIf="formularioRegistro.get('usuario')?.errors?.
+['required']">
+El usuario es obligatorio.
+</div>
+<div *ngIf="formularioRegistro.get('usuario')?.errors?.
+['nombreProhibido']">
+Este nombre de usuario no está permitido.
+</div>
+</div>
+</div>
+<div>
+<label for="contraseña">Contraseña:</label>
+<input type="password" id="contraseña" formControlName="contraseña"
+/>
+</div>
+<div>
+<label for="confirmarContraseña">Confirmar Contraseña:</label>
+<input type="password" id="confirmarContraseña"
+formControlName="confirmarContraseña" />
+</div>
+<div *ngIf="formularioRegistro.errors?.['contraseñasNoCoinciden'] &&
+formularioRegistro.get('confirmarContraseña')?.touched">
+Las contraseñas no coinciden.
+</div>
+<button type="submit"
+[disabled]="formularioRegistro.invalid">Registrar</button>
+</form>

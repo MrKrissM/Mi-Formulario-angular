@@ -1,0 +1,65 @@
+<h2>Registro Completo</h2>
+<form [formGroup]="formularioRegistro" (ngSubmit)="registrar()">
+<!-- Información Personal -->
+<div formGroupName="informacionPersonal">
+<h3>Información Personal</h3>
+<div>
+    <label for="nombre">Nombre:</label>
+    <input id="nombre" formControlName="nombre" />
+    <div
+    *ngIf="formularioRegistro.get('informacionPersonal.nombre')?.invalid &&
+    formularioRegistro.get('informacionPersonal.nombre')?.touched">
+    El nombre es obligatorio.
+    </div>
+    </div>
+    <div>
+    <label for="apellido">Apellido:</label>
+    <input id="apellido" formControlName="apellido" />
+    <div
+    *ngIf="formularioRegistro.get('informacionPersonal.apellido')?.invalid &&
+    formularioRegistro.get('informacionPersonal.apellido')?.touched">
+    El apellido es obligatorio.
+    </div>
+    </div>
+    <div>
+    <label for="email">Correo Electrónico:</label>
+    <input id="email" formControlName="email" />
+    <div
+    *ngIf="formularioRegistro.get('informacionPersonal.email')?.invalid &&
+    formularioRegistro.get('informacionPersonal.email')?.touched">
+    Ingrese un correo electrónico válido.
+    </div>
+    </div>
+    </div>
+    <!-- Dirección -->
+    <div formGroupName="direccion">
+    <h3>Dirección</h3>
+    <div>
+    <label for="calle">Calle:</label>
+    <input id="calle" formControlName="calle" />
+    <div *ngIf="formularioRegistro.get('direccion.calle')?.invalid &&
+    formularioRegistro.get('direccion.calle')?.touched">
+    La calle es obligatoria.
+    </div>
+    </div>
+    <div>
+    <label for="ciudad">Ciudad:</label>
+    <input id="ciudad" formControlName="ciudad" />
+    <div *ngIf="formularioRegistro.get('direccion.ciudad')?.invalid &&
+    formularioRegistro.get('direccion.ciudad')?.touched">
+    La ciudad es obligatoria.
+    </div>
+    </div>
+    <div>
+    <label for="codigoPostal">Código Postal:</label>
+    <input id="codigoPostal" formControlName="codigoPostal" />
+    <div
+    *ngIf="formularioRegistro.get('direccion.codigoPostal')?.invalid &&
+    formularioRegistro.get('direccion.codigoPostal')?.touched">
+    El código postal es obligatorio.
+    </div>
+</div>
+</div>
+<button type="submit"
+[disabled]="formularioRegistro.invalid">Registrar</button>
+</form>
